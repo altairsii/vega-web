@@ -12,6 +12,10 @@
 		</param-value>
 	</context-param>
 
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -25,7 +29,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<filter>
+	<!-- <filter>
 		<filter-name>sessionFilter</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<init-param>
@@ -43,7 +47,7 @@
 	</filter-mapping>
 
 
-	<!-- Xssfilter -->
+	Xssfilter
 	<filter>
 		<filter-name>xssFilter</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -59,12 +63,10 @@
 	<filter-mapping>
 		<filter-name>xssFilter</filter-name>
 		<servlet-name>spring-dispatcher</servlet-name>
-	</filter-mapping>
+	</filter-mapping> -->
 
 
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+
 
 	<servlet>
 		<servlet-name>spring-dispatcher</servlet-name>

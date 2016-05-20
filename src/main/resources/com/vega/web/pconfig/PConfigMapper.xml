@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vega.web.turnkey.dao.pconfig.PConfigMapper">
+	<resultMap id="BaseResultMap" type="com.vega.web.turnkey.model.PConfig">
+		<result column="id" property="id" jdbcType="VARCHAR" />
+		<result column="aliases" property="aliases" jdbcType="VARCHAR" />
+		<result column="prop_name" property="propName" jdbcType="VARCHAR" />
+		<result column="version" property="version" jdbcType="VARCHAR" />
+		<result column="attr_name" property="attrName" jdbcType="VARCHAR" />
+		<result column="attr_value" property="attrValue" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, aliases,prop_name,version,attr_name,attr_value
+	</sql>
+	<select id="selectPConfig" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pconfig
+	</select>
+	<insert id="batchInsertPConfig" parameterType="com.vega.web.turnkey.model.PConfig"
+		useGeneratedKeys="false">
+		INSERT INTO pconfig
+		(
+		aliases,prop_name,version,attr_name,attr_value
+		)
+		VALUES
+		<foreach collection="pconfigs" item="model" separator=",">
+			(
+			#{model.aliases}, #{model.prop_name},
+			#{model.version},
+			#{model.attrName},
+			#{model.attrValue}
+			)
+		</foreach>
+	</insert>
+	<insert id="insertPConfig" parameterType="com.vega.web.turnkey.model.PConfig">
+		insert into pconfig
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="aliases != null">
+				aliases,
+			</if>
+			<if test="prop_name != null">
+				prop_name,
+			</if>
+			<if test="version != null">
+				version,
+			</if>
+			<if test="attr_name != null">
+				attr_name,
+			</if>
+			<if test="attr_value != null">
+				attr_value,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="aliases != null">
+				#{aliases,jdbcType=INTEGER},
+			</if>
+			<if test="prop_name != null">
+				#{prop_name,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=SMALLINT},
+			</if>
+			<if test="attr_name != null">
+				#{attr_name,jdbcType=VARCHAR},
+			</if>
+			<if test="attr_value != null">
+				#{attr_value,jdbcType=TINYINT},
+			</if>
+		</trim>
+	</insert>
+</mapper>

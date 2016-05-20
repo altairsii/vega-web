@@ -78,13 +78,13 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">环境信息管理</div>
+						<div class="panel-heading">配置信息管理</div>
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-6">
 									<form role="form" action="queryserver.html" method="get">
 										<div class="form-group">
-											<label>服务信息查询</label> <input class="form-control"
+											<label>配置信息查询</label> <input class="form-control"
 												name="server" value="${servername }">
 										</div>
 										<button type="submit" class="btn btn-default">查询</button>
@@ -99,7 +99,7 @@
 					<!-- /.panel -->
 				</div>
 				<div class="col-lg-12">
-					<h1 class="page-header">服务信息详情</h1>
+					<h1 class="page-header">配置信息详情</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -115,27 +115,22 @@
 									id="dataTables-example">
 									<thead>
 										<tr>
-											<th>Rendering engine</th>
-											<th>Browser</th>
-											<th>Platform(s)</th>
-											<th>Engine version</th>
-											<th>CSS grade</th>
+											<th>id</th>
+											<th>服务名称</th>
+											<th>配置名称</th>
+											<th>版本号</th>
+											<th>属性名</th>
+											<th>属性值</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr class="odd gradeX">
-											<td>Trident</td>
-											<td>Internet Explorer 4.0</td>
-											<td>Win 95+</td>
-											<td class="center">4</td>
-											<td class="center">X</td>
-										</tr>
-										<tr class="even gradeC">
-											<td>Trident</td>
-											<td>Internet Explorer 5.0</td>
-											<td>Win 95+</td>
-											<td class="center">5</td>
-											<td class="center">C</td>
+											<td>${pconfigList.id}</td>
+											<td>${pconfigList.aliases}</td>
+											<td>${pconfigList.propName}</td>
+											<td>${pconfigList.version}</td>
+											<td>${pconfigList.key}</td>
+											<td>${pconfigList.value}</td>
 										</tr>
 									</tbody>
 								</table>

@@ -13,6 +13,7 @@
 		<spring.rabbit.version>1.4.4.RELEASE</spring.rabbit.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<mybatis.version>3.2.8</mybatis.version>
+		<mysql.connector.java.version>6.0.2</mysql.connector.java.version>
 		<spring.mybatis.version>1.2.2</spring.mybatis.version>
 		<mysql.version>5.1.35</mysql.version>
 		<java.version>1.7</java.version>
@@ -25,6 +26,7 @@
 		<freemarker.version>2.3.23</freemarker.version>
 		<servlet.version>3.1.0</servlet.version>
 
+		<jetty.port>10010</jetty.port>
 
 		<!-- Maven Plugin Version for this Project -->
 		<maven-bundle-plugin-version>2.3.7</maven-bundle-plugin-version>
@@ -86,11 +88,6 @@
 			<version>${servlet.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${servlet.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>${mybatis.version}</version>
@@ -121,6 +118,12 @@
 			<artifactId>mybatis</artifactId>
 			<version>${mybatis.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.connector.java.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
@@ -155,6 +158,15 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>${jetty.version}</version>
+				<configuration>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.ServerConnector">
+							<port>${jetty.port}</port>
+							<maxIdleTime>60000</maxIdleTime>
+						</connector>
+					</connectors>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -210,32 +222,12 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<!-- <executions>
-					<execution>
-						<id>unix-bin</id>
-						<phase>package</phase>
-						<goals>
-							<goal>attached</goal>
-						</goals>
-						<configuration>
-							<descriptors>
-								<descriptor>src/main/descriptors/unix-bin.xml</descriptor>
-							</descriptors>
-						</configuration>
-					</execution>
-					<execution>
-						<id>windows-bin</id>
-						<phase>package</phase>
-						<goals>
-							<goal>attached</goal>
-						</goals>
-						<configuration>
-							<descriptors>
-								<descriptor>src/main/descriptors/windows-bin.xml</descriptor>
-							</descriptors>
-						</configuration>
-					</execution>
-				</executions> -->
+				<!-- <executions> <execution> <id>unix-bin</id> <phase>package</phase> 
+					<goals> <goal>attached</goal> </goals> <configuration> <descriptors> <descriptor>src/main/descriptors/unix-bin.xml</descriptor> 
+					</descriptors> </configuration> </execution> <execution> <id>windows-bin</id> 
+					<phase>package</phase> <goals> <goal>attached</goal> </goals> <configuration> 
+					<descriptors> <descriptor>src/main/descriptors/windows-bin.xml</descriptor> 
+					</descriptors> </configuration> </execution> </executions> -->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
